@@ -4,17 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "npm run nodemon",
+    "dev": "cross-env NODE_ENV=development node ./api/app.js",
+    "nodemon": "nodemon --exec npm run dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.18.2",
+    "core-js": "^2.6.9",
+    "cors": "^2.8.4",
     "express": "^4.17.1",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.13"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
     "nodemon": "^2.0.4"
   }
 }
