@@ -1,9 +1,11 @@
 // const { createBlogpost } = blogService
 const User = require('../models/User')
 const authService = require('../services/auth.service')
+const { body, validationResult } = require('express-validator')
 
   const index = async (req, res, next) => {
     try {
+
       const users = await User.findAll();
       return res.status(200).json(
         users
@@ -16,8 +18,26 @@ const authService = require('../services/auth.service')
     }
   }
 
-  const register = async (req, res, next) => {
-    const { body } = req;
+  const register = async (req, res, next) => {  
+    const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+  const { body } = req;
+
+    const find = await User.findOne({
+      where: {
+        email: body.email
+      }
+    })
+
+    console.log('FIND')
+    console.log(find)
+    if (find) {
+        return res.status(400).json({ msg: 'E-mail already in use' }); 
+    }
+  
+
 
     if (body.password === body.password2) {
       try {
