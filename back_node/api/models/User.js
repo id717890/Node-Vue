@@ -7,9 +7,9 @@ const hooks = {
   beforeCreate(user) {
     user.password = bcryptService().password(user); // eslint-disable-line no-param-reassign
   },
-};
+}; 
 
-const tableName = 'users';
+const tableName = 'Users';
 
 const User = sequelize.define('User', {
   email: {
