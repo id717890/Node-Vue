@@ -1,4 +1,5 @@
 const database = require('../../config/database');
+const User = require('../models/User')
 
 const dbService = (environment, migrate) => {
   const authenticateDB = () => database.authenticate();
@@ -23,6 +24,7 @@ const dbService = (environment, migrate) => {
   const startMigrateTrue = async () => {
     try {
       await syncDB();
+      // await User.sync()
       successfulDBStart();
     } catch (err) {
       errorDBStart(err);
