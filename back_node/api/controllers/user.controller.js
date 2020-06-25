@@ -30,14 +30,9 @@ const { body, validationResult } = require('express-validator')
         email: body.email
       }
     })
-
-    console.log('FIND')
-    console.log(find)
     if (find) {
         return res.status(400).json({ msg: 'E-mail already in use' }); 
     }
-  
-
 
     if (body.password === body.password2) {
       try {
