@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express'); 
 const http = require('http')
 const cors = require('cors');
+require('dotenv').config() 
 
 /**
  * server configuration
@@ -30,8 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-const authRoutes = require('../config/routes/auth')
-app.use('/auth', authRoutes)
+app.use('/api', require('../config/routes'))
 
 const Sequelize = require('sequelize');
 
