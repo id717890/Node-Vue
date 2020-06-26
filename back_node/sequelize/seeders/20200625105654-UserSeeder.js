@@ -1,15 +1,18 @@
-'use strict';
+'use strict'
 
-const bcryptService = require('../../api/services/bcrypt.service');
+const bcryptService = require('../../api/services/bcrypt.service')
 
 module.exports = {
+  // eslint-disable-next-line
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Users', [{
-      email: 'jusupovz@gmail.com',
-      password: bcryptService().password({password: '123'}), // eslint-disable-line no-param-reassign,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }]);
+    return queryInterface.bulkInsert('Users', [
+      {
+        email: 'jusupovz@gmail.com',
+        password: bcryptService().password({ password: '123' }), // eslint-disable-line no-param-reassign,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ])
     /**
      * Add seed commands here.
      *
@@ -18,11 +21,11 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
+     */
   },
-
+  // eslint-disable-next-line
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('Users', null, {})
     /**
      * Add commands to revert seed here.
      *
@@ -30,4 +33,4 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
   }
-};
+}

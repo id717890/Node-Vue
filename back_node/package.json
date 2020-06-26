@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./api/. ./config/. ./sequelize/.",
     "start": "npm run nodemon",
     "dev": "cross-env NODE_ENV=development node ./api/app.js",
-    "nodemon": "nodemon --exec npm run dev"
+    "nodemon": "nodemon --exec \"npm run lint -- --fix && npm run dev\""
   },
   "author": "",
   "license": "ISC",
@@ -25,8 +26,12 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "eslint": "^7.3.1",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.11.0",
-    "nodemon": "^2.0.4"
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   }
 }
