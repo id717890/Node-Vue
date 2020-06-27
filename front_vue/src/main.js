@@ -9,6 +9,7 @@ import VueNoty from 'vuejs-noty-2'
 import 'vuejs-noty-2/dist/vuejs-noty.css'
 import AxiosConfig from './api/http-config'
 import Auth from './plugins/auth'
+import 'nprogress/nprogress.css'
 
 Vue.$http = AxiosConfig
 Vue.use(VueNoty)

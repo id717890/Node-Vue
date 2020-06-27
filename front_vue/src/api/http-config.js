@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import config from '../init/config'
-// import store from '../store'
-// console.log(Vue.prototype.$auth.getToken());
+import NProgress from 'nprogress'
 
 const Axios = axios.create({
   baseURL: config.apiAddress,
@@ -14,13 +13,14 @@ const Axios = axios.create({
 })
 
 Axios.interceptors.request.use(config => {
+  NProgress.start()
   config.headers.Authorization = 'Bearer ' + Vue.auth.getToken()
   return config
 })
 
 Axios.interceptors.response.use(
   response => {
-    // NProgress.done()
+    NProgress.done()
     // store.dispatch('setLoading', false)
     return response
   },
