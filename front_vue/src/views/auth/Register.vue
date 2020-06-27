@@ -17,6 +17,13 @@
               required
               :rules="passwordRules"
             ></v-text-field>
+            <v-text-field
+              label="Пароль еще раз"
+              type="password"
+              v-model="form.password2"
+              required
+              :rules="passwordConfirmRules"
+            ></v-text-field>
           </v-form>
         </v-col>
         <v-col
@@ -28,22 +35,15 @@
           offset-md="2"
           sm="12"
         >
-          <v-btn large color="primary" class="" tile to="/register">
-            <v-icon class="mr-3">mdi-account-circle</v-icon>
-            Регистрация
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            large
-            color="success"
-            class="px-10"
-            tile
-            @click="signin"
-            :disabled="!form.valid"
-          >
+          <v-btn large color="success" class="px-10" tile to="/login">
             <v-icon class="mr-3">mdi-login</v-icon>
             Вход</v-btn
           >
+          <v-spacer></v-spacer>
+          <v-btn large color="primary" class="" tile @click="regUser">
+            <v-icon class="mr-3">mdi-account-circle</v-icon>
+            Регистрация
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -59,24 +59,26 @@ export default {
       form: {
         valid: true,
         email: 'jusupovz@gmail.com',
-        password: '123'
+        password: '123',
+        password2: '123'
       },
       emailRules: [
         v => !!v || 'E-mail required',
         v => /.+@.+/.test(v) || 'E-mail must be valid'
       ],
-      passwordRules: [v => !!v || 'Password required']
+      passwordRules: [v => !!v || 'Password required'],
+      passwordConfirmRules: [
+        v => !!v || 'Password required',
+        v => v === this.form.password || 'Password not equal'
+      ]
     }
   },
-  created() {
-    // this.$vuetify.theme.dark = false
-  },
   methods: {
-    ...mapActions(['signUserIn']),
-    signin(e) {
+    ...mapActions(['register']),
+    regUser(e) {
       e.preventDefault()
       if (this.$refs.form.validate()) {
-        this.signUserIn(this.form)
+        this.register(this.form)
       }
     }
   }

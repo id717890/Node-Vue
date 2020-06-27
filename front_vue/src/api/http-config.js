@@ -31,9 +31,9 @@ Axios.interceptors.response.use(
     //     // store.dispatch('redirectToSignIn')
     //   }
     // }
-    // // NProgress.done()
+    NProgress.done()
     // // store.dispatch('setLoading', false)
-    return error
+    return Promise.reject(error.response)
   }
 )
 

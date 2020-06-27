@@ -71,8 +71,8 @@ const register = async (req, res) => {
         password: body.password
       })
       const token = authService().issue({ id: user.id })
-
-      return res.status(200).json({ token, user })
+      const expiration = process.env.TOKEN_EXPIRATION
+      return res.status(200).json({ token, expiration })
     } catch (err) {
       console.log(err)
       return res.status(500).json({ msg: err })

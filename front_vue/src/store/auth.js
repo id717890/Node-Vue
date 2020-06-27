@@ -35,6 +35,25 @@ const getters = {
 
 // actions
 const actions = {
+  register({ commit }, payload) {
+    context
+      .post('/api/auth/register', payload, { responseType: 'json' })
+      // eslint-disable-next-line
+      .then(x => {
+        if (x.status !== 200) {
+          if (x.data) {
+            if (x.data.errors) {
+              x.data.errors.forEach(error => Vue.noty.error(error.msg))
+            }
+            if (x.data.msg) Vue.noty.error(x.data.msg)
+          }
+        }
+        commit(types.REGISTER)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
   autoLogin({ commit, dispatch }) {
     let user = {
       token: localStorage.getItem('token'),
@@ -91,10 +110,10 @@ const actions = {
 
 // mutations
 const mutations = {
+  [types.REGISTER]() {},
   [types.SET_USER](state, payload) {
     state.user = payload
   },
-
   [types.SET_TOKEN](state, payload) {
     state.token = payload
   },
