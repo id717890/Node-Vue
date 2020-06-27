@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <modals-container />
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
         <v-list-item link>
@@ -27,7 +28,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="fill-height" fluid>
+      <!-- <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col class="text-center">
             <v-tooltip left>
@@ -40,7 +41,10 @@
             </v-tooltip>
           </v-col>
         </v-row>
-      </v-container>
+      </v-container> -->
+      <transition mode="out-in">
+        <router-view />
+      </transition>
     </v-main>
     <v-footer app>
       <span class="white--text">&copy; 2019</span>

@@ -46,9 +46,8 @@ export default function(Vue) {
       }
       return false
     },
-    setToken(token, refresh_token, expiration) {
+    setToken(token, expiration) {
       localStorage.setItem('token', token)
-      localStorage.setItem('refresh_token', refresh_token)
       localStorage.setItem('expiration', expiration)
     },
     setUser(user) {
@@ -63,7 +62,6 @@ export default function(Vue) {
     logout() {
       localStorage.removeItem('token')
       localStorage.removeItem('expiration')
-      localStorage.removeItem('refresh_token')
     }
     // isAuth () {
     //   if (this.getToken()) return true

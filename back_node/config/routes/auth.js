@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const { index, register } = require('../../api/controllers/user.controller')
+const { login, register } = require('../../api/controllers/user.controller')
 const { check } = require('express-validator')
-router.get('/login', index)
+router.post('/login', login)
 // router.post('/register',
 //   body('email').custom(value => {
 //     return User.findUserByEmail(value).then(user => {

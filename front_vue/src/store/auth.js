@@ -9,17 +9,17 @@ const state = {
 
 // getters
 const getters = {
-  getToken: state => {
-    if (!state.user) return null
-    var n = state.user.access_token.split('.')
-    if (n.length < 2) return null
-    var r = JSON.parse(atob(n[0])),
-      e = JSON.parse(atob(n[1]))
-    console.log(r)
-    console.log(e)
+  // getToken: state => {
+  //   if (!state.user) return null
+  //   var n = state.user.access_token.split('.')
+  //   if (n.length < 2) return null
+  //   var r = JSON.parse(atob(n[0])),
+  //     e = JSON.parse(atob(n[1]))
+  //   console.log(r)
+  //   console.log(e)
 
-    return 123
-  },
+  //   return 123
+  // },
   getUser(state) {
     return state.user
   },
@@ -37,38 +37,23 @@ const getters = {
 const actions = {
   autoLogin({ commit, dispatch }) {
     let user = {
-      access_token: localStorage.getItem('token'),
-      refresh_token: localStorage.getItem('token'),
-      expires_in: localStorage.getItem('expiration')
+      token: localStorage.getItem('token'),
+      expiration: localStorage.getItem('expiration')
     }
-    if (user.access_token && user.refresh_token && user.expires_in) {
+    if (user.token && user.expiration) {
       commit(types.SET_USER, user)
-      router.push('/')
+      // router.push('/')
     } else dispatch('logout')
   },
   // async resetPassword({}) {
   //   return await context.post('api/auth/reset')
   // },
   async signUserIn({ commit }, payload) {
-    var data = new URLSearchParams()
-    data.append('username', payload.username)
-    data.append('password', payload.password)
-    data.append('grant_type', 'password')
-    var config = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Cache-Control': 'no-cache'
-      }
-    }
     context
-      .post('ManagerLogin', data, config)
+      .post('/api/auth/login', payload)
       .then(x => {
-        if (x && x.access_token && x.refresh_token && x.expires_in) {
-          Vue.auth.setToken(
-            x.access_token,
-            x.refresh_token,
-            x.expires_in + Date.now()
-          )
+        if (x && x.token && x.expiration) {
+          Vue.auth.setToken(x.token, x.expiration + Date.now())
           commit(types.SET_USER, x)
           router.push('/')
         } else {
@@ -92,16 +77,15 @@ const actions = {
         // }
       })
       .catch(x => {
-        console.log(222)
-
-        if (x.error && x.error_description) Vue.noty.error(x.error_description)
-        else Vue.noty.error('ERROR CATCH')
+        console.log(x)
+        Vue.noty.error('ERROR CATCH')
       })
   },
 
   async logout({ commit }) {
     Vue.auth.logout()
     commit(types.SET_USER, null)
+    router.push('/login')
   }
 }
 

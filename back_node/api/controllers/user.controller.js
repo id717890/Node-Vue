@@ -1,6 +1,7 @@
 // const { createBlogpost } = blogService
 const User = require('../models/User')
 const authService = require('../services/auth.service')
+const bcryptService = require('../services/bcrypt.service')
 const { validationResult } = require('express-validator')
 
 const index = async (req, res) => {
@@ -13,6 +14,38 @@ const index = async (req, res) => {
       msg: 'Internal server error' 
     })
   }
+}
+
+const login = async (req, res) => {
+  const { email, password } = req.body 
+
+  if (email && password) {
+    try {
+      const user = await User
+        .findOne({
+          where: {
+            email
+          }
+        })
+
+      if (!user) {
+        return res.status(400).json({ msg: 'Bad Request: User not found' })
+      }
+
+      if (bcryptService().comparePassword(password, user.password)) {
+        const token = authService().issue({ id: user.id })
+        const expiration = process.env.TOKEN_EXPIRATION
+        return res.status(200).json({ token, expiration })
+      }
+
+      return res.status(401).json({ msg: 'Unauthorized' })
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({ msg: 'Internal server error' })
+    }
+  }
+
+  return res.status(400).json({ msg: 'Bad Request: Email or password is wrong' })
 }
 
 const register = async (req, res) => {
@@ -70,4 +103,4 @@ const register = async (req, res) => {
 //   }
 // }
 
-module.exports = { index, register }
+module.exports = { index, login, register }
