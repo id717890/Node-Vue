@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./api/. ./config/. ./sequelize/.",
+    "lint": "eslint ./api/. ./config/. ./db/.",
     "start": "npm run nodemon",
     "dev": "cross-env NODE_ENV=development node ./api/app.js",
     "nodemon": "nodemon --exec \"npm run lint -- --fix && npm run dev\""

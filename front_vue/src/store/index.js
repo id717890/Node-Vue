@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import dialog from './dialog'
 // import loading from "./loading";
 import auth from './auth'
+import config from './config'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     // }
   ],
   modules: {
-    auth
+    auth,
+    config
   }
 })

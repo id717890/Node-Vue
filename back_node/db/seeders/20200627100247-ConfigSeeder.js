@@ -6,13 +6,25 @@ module.exports = {
     return queryInterface.bulkInsert('Configs', [
       {
         key: 'navbar',
-        value: '0',
+        value: '1',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        key: 'footer',
+        value: '1',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         key: 'theme',
         value: 'dark',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        key: 'color',
+        value: '',
         createdAt: new Date(),
         updatedAt: new Date()
       }

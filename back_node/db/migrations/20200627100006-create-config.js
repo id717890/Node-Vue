@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       key: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       value: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
@@ -24,6 +26,7 @@ module.exports = {
       }
     }) 
   },
+  // eslint-disable-next-line
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Configs')
   }

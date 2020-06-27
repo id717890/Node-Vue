@@ -21,7 +21,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app :color="cfgColor" dark v-if="cfgNavbar && cfgNavbar == 1">
+    <v-app-bar app dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
     </v-app-bar>
@@ -42,44 +42,18 @@
         </v-row>
       </v-container>
     </v-main>
-    <v-footer :color="cfgColor" app v-if="cfgFooter && cfgFooter == 1">
+    <v-footer app>
       <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 export default {
   props: {
     source: String
   },
-  computed: {
-    ...mapGetters(['getConfig']),
-    cfgTheme() {
-      return this.getConfig('theme')
-    },
-    cfgColor() {
-      return this.getConfig('color')
-    },
-    cfgNavbar() {
-      return this.getConfig('navbar')
-    },
-    cfgFooter() {
-      return this.getConfig('footer')
-    }
-  },
-  async created() {
-    this.getAllConfigs()
-  },
-  watch: {
-    cfgTheme(value) {
-      if (value) this.$vuetify.theme.dark = this.cfgTheme === 'dark'
-    }
-  },
-  methods: {
-    ...mapActions(['getAllConfigs'])
-  },
+
   data: () => ({
     drawer: null
   })
