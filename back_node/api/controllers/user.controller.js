@@ -1,6 +1,6 @@
 // const { createBlogpost } = blogService
-const User = require('../models/User')
-const UserVerification = require('../models/UserVerification')
+const User = require('../../db/models/User')
+const UserVerification = require('../../db/models/UserVerification')
 const authService = require('../services/auth.service')
 const bcryptService = require('../services/bcrypt.service')
 const mailService = require('../services/mail.service')

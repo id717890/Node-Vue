@@ -1,25 +1,41 @@
-'use strict'
-const {
-  Model
-} = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-  class UserVerification extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    // eslint-disable-next-line
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize')
+const sequelize = require('../../config/database')
+const User = require('./User')
+const hooks = {}
+
+const tableName = 'UserVerifications'
+
+const UserVerification = sequelize.define(
+  'UserVerifications', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true
+    },
+    userId: {
+      type: Sequelize.INTEGER
+    },
+    token: {
+      allowNull: false,
+      type: Sequelize.STRING
     }
-  };
-  UserVerification.init({
-    userId: DataTypes.STRING,
-    token: DataTypes.STRING
   }, {
-    sequelize,
-    modelName: 'UserVerification'
-  })
-  return UserVerification
-}
+    hooks,
+    tableName
+  }
+)
+
+UserVerification.belongsTo(User)
+
+// eslint-disable-next-line
+// UserVerification.prototype.toJSON = function () {
+//   const values = Object.assign({}, this.get())
+
+//   delete values.password
+//   delete values.createdAt
+
+//   return values
+// }
+
+module.exports = UserVerification

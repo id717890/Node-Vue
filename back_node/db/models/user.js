@@ -1,25 +1,38 @@
-'use strict'
-const { Model } = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    // eslint-disable-next-line
-    static associate(models) {
-      // define association here
-    }
+const Sequelize = require('sequelize')
+const bcryptService = require('../../api/services/bcrypt.service')
+
+const sequelize = require('../../config/database')
+
+const hooks = {
+  beforeCreate(user) {
+    user.password = bcryptService().password(user) // eslint-disable-line no-param-reassign
   }
-  User.init(
-    {
-      firstName: DataTypes.STRING
-    },
-    {
-      sequelize,
-      modelName: 'User'
-    }
-  )
-  return User
 }
+
+const tableName = 'Users'
+
+const User = sequelize.define(
+  'User',
+  {
+    email: {
+      type: Sequelize.STRING,
+      unique: true
+    },
+    password: {
+      type: Sequelize.STRING
+    }
+  },
+  { hooks, tableName }
+)
+
+// eslint-disable-next-line
+User.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get())
+
+  delete values.password
+  delete values.createdAt
+
+  return values
+}
+
+module.exports = User
