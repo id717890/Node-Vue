@@ -1,25 +1,24 @@
-'use strict'
-const {
-  Model
-} = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-  class Config extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-  // eslint-disable-next-line
-    static associate(models) {
-      // define association here
+const Sequelize = require('sequelize')
+
+const sequelize = require('../../config/database')
+
+const hooks = {}
+
+const tableName = 'Configs'
+
+const Config = sequelize.define(
+  'Configs',
+  {
+    key: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    value: {
+      type: Sequelize.STRING,
+      allowNull: false
     }
-  };
-  Config.init({
-    key: DataTypes.STRING,
-    value: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Config'
-  })
-  return Config
-}
+  },
+  { hooks, tableName }
+)
+
+module.exports = Config

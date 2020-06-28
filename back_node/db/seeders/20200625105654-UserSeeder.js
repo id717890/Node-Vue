@@ -7,6 +7,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
+        id: 1,
         email: 'jusupovz@gmail.com',
         password: bcryptService().password({ password: '123' }), // eslint-disable-line no-param-reassign,
         createdAt: new Date(),

@@ -59,8 +59,8 @@ export default {
       form: {
         valid: true,
         email: 'jusupovz@gmail.com',
-        password: '123',
-        password2: '123'
+        password: 'qweqwe',
+        password2: 'qweqwe'
       },
       emailRules: [
         v => !!v || 'E-mail required',

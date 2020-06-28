@@ -1,7 +1,8 @@
-const Config = require('../models/Config')
+const Config = require('../../db/models/config')
 
 const index = async (req, res) => {
   try {
+    console.log(Config)
     const configs = await Config.findAll()
     return res.status(200).json(configs)
   } catch (err) {

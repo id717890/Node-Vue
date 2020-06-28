@@ -1,7 +1,9 @@
 // const { createBlogpost } = blogService
 const User = require('../models/User')
+const UserVerification = require('../models/UserVerification')
 const authService = require('../services/auth.service')
 const bcryptService = require('../services/bcrypt.service')
+const mailService = require('../services/mail.service')
 const { validationResult } = require('express-validator')
 
 const index = async (req, res) => {
@@ -49,6 +51,7 @@ const login = async (req, res) => {
 }
 
 const register = async (req, res) => {
+  mailService().send()
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })
@@ -70,6 +73,12 @@ const register = async (req, res) => {
         email: body.email,
         password: body.password
       })
+      const verification = await UserVerification.create({
+        UserId: user.id,
+        token: 'qqqq'
+      })
+
+      console.log(verification)
       const token = authService().issue({ id: user.id })
       const expiration = process.env.TOKEN_EXPIRATION
       return res.status(200).json({ token, expiration })
