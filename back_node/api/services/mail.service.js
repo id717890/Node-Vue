@@ -26,7 +26,7 @@ const mailService = () => {
     // Step 3
     //eslint-disable-next-line
     let mailOptions = {
-      from: 'jusupovz@gmail.com', // TODO: email sender
+      from: 'NODE.JS <jusupovz@gmail.com>', // TODO: email sender
       to: email, // TODO: email receiver
       subject: 'Nodemailer - Test',
       text: 'Wooohooo it works!!',
