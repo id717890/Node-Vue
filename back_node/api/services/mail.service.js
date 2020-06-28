@@ -21,18 +21,19 @@ const hbsOptions = {
 
 
 const mailService = () => {
-  const send = () => {
+  const send = (email, token) => {
     transporter.use('compile', hbs(hbsOptions))
     // Step 3
     //eslint-disable-next-line
     let mailOptions = {
       from: 'jusupovz@gmail.com', // TODO: email sender
-      to: 'kakashka87@list.ru', // TODO: email receiver
+      to: email, // TODO: email receiver
       subject: 'Nodemailer - Test',
       text: 'Wooohooo it works!!',
       template : 'register',
       context: {
-        name: 'Accime Esterling'
+        email: email,
+        token: token
       } // send extra values to template
     }
 
