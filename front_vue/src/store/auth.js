@@ -76,7 +76,8 @@ const actions = {
           commit(types.SET_USER, x)
           router.push('/')
         } else {
-          Vue.noty.error('Ошибка входа. Token не обнаружен')
+          if (x.data.msg) Vue.noty.error(x.data.msg)
+          else Vue.noty.error('Ошибка входа. Token не обнаружен')
         }
         // if (x) {
         //   let token = x.access_token

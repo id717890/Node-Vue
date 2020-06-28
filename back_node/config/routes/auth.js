@@ -1,7 +1,8 @@
 const router = require('express').Router()
-const { login, register, index } = require('../../api/controllers/user.controller')
+const { login, register, index, verifyRegister } = require('../../api/controllers/user.controller')
 const { check } = require('express-validator')
 router.get('/', index)
+router.post('/verifyRegister', verifyRegister)
 router.post('/login', login)
 // router.post('/register',
 //   body('email').custom(value => {

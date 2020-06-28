@@ -23,7 +23,7 @@ const hbsOptions = {
 const mailService = () => {
   const send = (email, token) => {
     transporter.use('compile', hbs(hbsOptions))
-    const url = process.env.APP_FRONT_URL + '/verify?token='+token
+    const url = process.env.APP_FRONT_URL + '/verify/'+token
     // Step 3
     //eslint-disable-next-line
     let mailOptions = {

@@ -13,7 +13,7 @@ const UserVerification = sequelize.define(
       allowNull: false,
       autoIncrement: true
     },
-    userId: {
+    UserId: {
       type: Sequelize.INTEGER
     },
     token: {

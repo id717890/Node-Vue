@@ -9,7 +9,8 @@ module.exports = {
       {
         id: 1,
         email: 'jusupovz@gmail.com',
-        password: bcryptService().password({ password: '123' }), // eslint-disable-line no-param-reassign,
+        password: bcryptService().password({ password: '123' }),
+        verified: true,
         createdAt: new Date(),
         updatedAt: new Date()
       }

@@ -8,6 +8,30 @@ const { validationResult } = require('express-validator')
 const sequelize = require('../../config/database')
 const { v4: uuid } = require('uuid')
 
+const verifyRegister = async (req, res) => {
+  const {token} = req.body
+  try {
+    const find = await UserVerification.findOne({
+      where: {
+        token: token
+      },
+      include: [{model: User}]
+    })
+    if (find) {
+      find.User.verified = true
+      await find.User.save()
+      await find.destroy()
+      return res.status(200).json({msg: 'success'})
+    }
+    return res.status(404).json({msg: 'Token not found'})
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({
+      msg: 'Internal server error'
+    })
+  }
+}
+
 const index = async (req, res) => {
   try {
     const users = await User.findAll()
@@ -34,10 +58,17 @@ const login = async (req, res) => {
             email
           }
         })
+        
 
       if (!user) {
         return res.status(400).json({
           msg: 'Bad Request: User not found'
+        })
+      }
+
+      if (user && !user.verified) {
+        return res.status(400).json({
+          msg: 'User not verified'
         })
       }
 
@@ -112,7 +143,8 @@ const register = async (req, res) => {
       } catch (error) {
         console.log(error)
         return res.status(500).json({
-          msg: '500 error'
+          msg: '500 error',
+          error: error
         })
       
         // If the execution reaches this line, an error occurred.
@@ -164,5 +196,6 @@ const register = async (req, res) => {
 module.exports = {
   index,
   login,
-  register
+  register,
+  verifyRegister
 }

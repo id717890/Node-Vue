@@ -20,6 +20,10 @@ const User = sequelize.define(
     },
     password: {
       type: Sequelize.STRING
+    },
+    verified: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
     }
   },
   { hooks, tableName }

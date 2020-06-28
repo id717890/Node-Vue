@@ -23,6 +23,13 @@ const routes = [
     component: () => import('../views/auth/Register.vue')
   },
   {
+    path: '/verify/:code',
+    name: 'Verify',
+    props: true,
+    component: () => import('../views/auth/RegisterConfirm.vue')
+  },
+
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
