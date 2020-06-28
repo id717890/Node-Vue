@@ -23,6 +23,7 @@ const hbsOptions = {
 const mailService = () => {
   const send = (email, token) => {
     transporter.use('compile', hbs(hbsOptions))
+    const url = process.env.APP_FRONT_URL + '/verify?token='+token
     // Step 3
     //eslint-disable-next-line
     let mailOptions = {
@@ -32,8 +33,7 @@ const mailService = () => {
       text: 'Wooohooo it works!!',
       template : 'register',
       context: {
-        email: email,
-        token: token
+        url: url
       } // send extra values to template
     }
 

@@ -104,7 +104,7 @@ const actions = {
   async logout({ commit }) {
     Vue.auth.logout()
     commit(types.SET_USER, null)
-    router.push('/login')
+    // router.push('/login')
   }
 }
 
