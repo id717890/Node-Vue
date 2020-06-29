@@ -2,7 +2,7 @@
   <v-app id="app" dark>
     <v-container fill-height>
       <v-row>
-        <v-col cols="12" lg="6" offset-lg="3" md="8" offset-md="2" sm="12">
+        <v-col cols="12" lg="8" offset-lg="2" md="8" offset-md="2" sm="12">
           <v-form lazy-validation v-model="form.valid" ref="form">
             <v-text-field
               label="E-mail"
@@ -21,16 +21,20 @@
         </v-col>
         <v-col
           cols="12"
-          lg="6"
+          lg="8"
           class="d-flex"
-          offset-lg="3"
+          offset-lg="2"
           md="8"
           offset-md="2"
           sm="12"
         >
-          <v-btn large color="primary" class="" tile to="/register">
+          <v-btn large color="primary" class="mr-3" tile to="/register">
             <v-icon class="mr-3">mdi-account-circle</v-icon>
             Регистрация
+          </v-btn>
+          <v-btn large color="primary" class="" tile to="/forgot">
+            <v-icon class="mr-3">mdi-lock-reset</v-icon>
+            Забыл пароль?
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn

@@ -11,7 +11,7 @@ module.exports = {
     ecmaVersion: 2017
   },
   rules: {
-    'semi': ['error', 'never'],
+    semi: ['error', 'never'],
     'comma-dangle': ['error', 'never'],
     quotes: ['error', 'single'],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

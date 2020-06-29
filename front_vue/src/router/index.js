@@ -23,6 +23,17 @@ const routes = [
     component: () => import('../views/auth/Register.vue')
   },
   {
+    path: '/forgot',
+    name: 'Forgot',
+    component: () => import('../views/auth/ResetPassword1.vue')
+  },
+  {
+    path: '/reset/:code',
+    name: 'Reset',
+    props: true,
+    component: () => import('../views/auth/ResetPassword2.vue')
+  },
+  {
     path: '/verify/:code',
     name: 'Verify',
     props: true,

@@ -1,0 +1,4 @@
+npx sequelize-cli model:generate --name Test --attributes test:string
+npx sequelize-cli db:migrate
+npx sequelize-cli db:migrate:undo
+npx sequelize-cli db:migrate:undo:all

@@ -19,7 +19,7 @@
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link @click="logout">
+        <v-list-item link @click="logoutApp">
           <v-list-item-action>
             <v-icon>mdi-email</v-icon>
           </v-list-item-action>
@@ -59,7 +59,7 @@
         <router-view />
       </transition>
     </v-main>
-    <v-footer :color="cfgColor" app v-if="cfgFooter && cfgFooter == 1">
+    <v-footer :color="cfgColor" v-if="cfgFooter && cfgFooter == 1">
       <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
@@ -95,7 +95,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getAllConfigs', 'logout'])
+    ...mapActions(['getAllConfigs', 'logout']),
+    logoutApp() {
+      this.logout()
+      this.$router.push('/login')
+    }
   },
   data: () => ({
     drawer: null
