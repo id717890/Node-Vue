@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import authGuard from '../plugins/auth-guard'
 import NProgress from 'nprogress'
+import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
@@ -58,6 +59,15 @@ const router = new VueRouter({
 })
 
 router.beforeResolve((to, from, next) => {
+  if (
+    (to.path === '/login' ||
+      to.path === '/register' ||
+      to.path === '/forgot') &&
+    store.getters.isAuth == true
+  ) {
+    return
+  }
+
   // If this isn't an initial page load.
   if (to.name) {
     // Start the route progress bar.
