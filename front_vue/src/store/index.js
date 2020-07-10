@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // import loading from "./loading";
 import auth from './auth'
 import config from './config'
+import news from './news'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   ],
   modules: {
     auth,
-    config
+    config,
+    news
   }
 })

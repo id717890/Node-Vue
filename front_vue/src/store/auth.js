@@ -101,11 +101,15 @@ const actions = {
         Vue.noty.error('ERROR CATCH')
       })
   },
-
   async logout({ commit }) {
     Vue.auth.logout()
     commit(types.SET_USER, null)
     // router.push('/login')
+  },
+  async logoutAndRedirectLogin({ commit }) {
+    Vue.auth.logout()
+    commit(types.SET_USER, null)
+    router.push('/login')
   }
 }
 

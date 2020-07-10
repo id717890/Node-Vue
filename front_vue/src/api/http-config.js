@@ -2,6 +2,8 @@ import Vue from 'vue'
 import axios from 'axios'
 import config from '../init/config'
 import NProgress from 'nprogress'
+import store from '../store'
+// import router from '../router'
 
 const Axios = axios.create({
   baseURL: config.apiAddress,
@@ -25,6 +27,12 @@ Axios.interceptors.response.use(
     return response
   },
   error => {
+    console.log('AXIOS' + error)
+    console.log(error)
+    if (error.response.status === 401) {
+      store.dispatch('logoutAndRedirectLogin')
+      //     // store.dispatch('redirectToSignIn')
+    }
     // if (error.response !== null && error.response !== undefined) {
     //   if (error.response.status === 403 || error.response.status === 401) {
     //     // store.dispatch('logout')

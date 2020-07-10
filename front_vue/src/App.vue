@@ -11,6 +11,14 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/news">
+          <v-list-item-action>
+            <v-icon>mdi-newspaper</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Новости</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link to="/login">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
@@ -37,7 +45,7 @@
       v-if="isAuth && cfgNavbar && cfgNavbar == 1"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Node.js + Vue.js App</v-toolbar-title>
     </v-app-bar>
 
     <v-main>

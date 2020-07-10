@@ -14,6 +14,12 @@ const routes = [
     component: Home
   },
   {
+    path: '/news',
+    name: 'NewsAdmin',
+    beforeEnter: authGuard,
+    component: () => import('../views/news/IndexAdmin.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/auth/Login.vue')
