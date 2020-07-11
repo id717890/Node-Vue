@@ -6,5 +6,6 @@ export default {
     adaptive: true,
     transition: 'nice-modal-fade',
     clickToClose: false
-  }
+  },
+  rowsPerPageTable: [15, 30, 50, 100, -1]
 }

@@ -27,8 +27,6 @@ Axios.interceptors.response.use(
     return response
   },
   error => {
-    console.log('AXIOS' + error)
-    console.log(error)
     if (error.response.status === 401) {
       store.dispatch('logoutAndRedirectLogin')
       //     // store.dispatch('redirectToSignIn')

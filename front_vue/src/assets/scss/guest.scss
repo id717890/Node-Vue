@@ -1,0 +1,152 @@
+.bg-constructor .v-responsive__content {
+  z-index: 10;
+}
+
+.t1 {
+  font-size: 36px;
+  font-family: "PTSans";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.t2_1 {
+  font-size: 18px;
+  font-family: "PTSans";
+  color: rgb(255, 255, 255);
+}
+
+.t3 {
+  font-size: 36px;
+  font-family: "PTSans";
+  color: rgb(70, 85, 134);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.t4 {
+  font-size: 16px;
+  font-family: "PTSans";
+  color: rgb(145, 145, 145);
+  line-height: 1.5;
+}
+
+.t5 {
+  font-size: 16px;
+  font-family: "PTSans";
+  color: rgb(205, 205, 205);
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.t6 {
+  font-family: "PTSans";
+  font-weight: 700;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  line-height: 38px;
+  color: #279e03;
+}
+
+.t7 {
+  white-space: nowrap;
+  font-family: "PTSans";
+}
+
+.news-item {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: row nowrap;
+  align-items: center;
+  border-bottom: 1px solid #cccccc;
+}
+
+.news-item:last-of-type {
+  border-bottom: none !important;
+}
+
+.news-item .day {
+  text-align: center;
+  font-size: 30px;
+  font-family: "PTSans";
+  color: rgb(136, 136, 136);
+}
+
+.news-item .month {
+  text-align: center;
+  font-size: 18px;
+  font-family: "PTSans";
+  color: rgb(136, 136, 136);
+}
+
+.news-item .date {
+  padding: 5px 10px;
+}
+
+.news-item .title {
+  font-size: 16px;
+  height: 30px;
+  overflow: hidden;
+  font-family: "PTSans";
+  color: rgb(51, 51, 51);
+  font-weight: bold;
+}
+
+.news-item .text {
+  font-size: 14px;
+  font-family: "PTSans";
+  color: rgb(136, 136, 136);
+  height: 40px;
+  overflow: hidden;
+}
+
+.img-galery .v-image__image {
+  transition: 1s;
+  cursor: pointer;
+}
+
+.img-galery:hover .v-image__image {
+  transform: scale(1.2);
+}
+
+.img-galery .v-image__image {
+  border-radius: 5px;
+}
+
+.news-date {
+  opacity: 0.5;
+}
+
+.card-news .v-image {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px !important;
+}
+
+.card-video {
+  // width: 100%;
+}
+
+.card-photo .v-image {
+  border-radius: 5px;
+}
+
+.photos-carousel .v-window__next {
+  right: 0;
+}
+
+.map .v-image__image {
+  height: 100vh;
+}
+
+.map .v-responsive__content {
+  z-index: 10;
+}
+
+.promocode .v-input__slot {
+  min-height: 46px !important;
+}
+
+.promocode .v-label {
+  top: 13px !important;
+}

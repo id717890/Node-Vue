@@ -10,12 +10,18 @@ import 'vuejs-noty-2/dist/vuejs-noty.css'
 import AxiosConfig from './api/http-config'
 import Auth from './plugins/auth'
 import 'nprogress/nprogress.css'
+import './plugins/font-awesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import '@fortawesome/fontawesome-free/css/all.css'
+import './assets/scss/_app.scss'
 
 Vue.$http = AxiosConfig
 Vue.use(VueNoty)
 Vue.use(Auth)
 Vue.use(VueJsModal, { dynamic: true })
 Vue.config.productionTip = false
+Vue.component('fai', FontAwesomeIcon)
 
 new Vue({
   router,

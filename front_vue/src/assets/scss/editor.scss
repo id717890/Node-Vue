@@ -1,0 +1,34 @@
+.theme--dark .menubar .menubar__button {
+  color: white;
+}
+
+
+.editor__content{
+  border: 1px solid silver;
+  border-radius: 4px;
+}
+
+.editor__content p img {
+  width: 100%;
+  padding: 5px 15px;
+}
+
+.page p img {
+  width: 60%;
+  padding: 5px 15px;
+  margin: auto;
+  display: block;
+}
+
+.ProseMirror {
+  padding: 10px;
+}
+
+.ProseMirror,
+.editor__content {
+  min-height: 240px;
+}
+
+.editor__content p {
+  margin: 0;
+}

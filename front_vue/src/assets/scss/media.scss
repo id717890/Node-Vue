@@ -1,0 +1,33 @@
+@media (min-width: 0)
+{
+  .canvas-container {
+    height: 190px !important
+  }
+}
+
+@media (min-width: 600px)
+{
+  .canvas-container {
+    height: 240px !important
+  }
+}
+
+@media (min-width: 960px)
+{
+  .canvas-container {
+    height: 290px !important
+  }
+}
+
+@media (min-width: 1264px) {
+  .canvas-container {
+    height: 350px !important
+  }
+}
+
+@media (min-width: 1904px)
+{
+  .canvas-container {
+    height: 360px !important
+  }
+}

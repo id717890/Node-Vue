@@ -1,0 +1,28 @@
+.rules-for-form {
+  transition: 1s;
+  height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+}
+
+.yurik-contract-for-buy,
+.yurik-contract-for-nanesenie {
+    transition: 1s;
+    height: 520px;
+    max-height: 520px;
+    overflow: hidden;
+}
+
+.fizik-contract-for-buy,
+.fizik-contract-for-nanesenie {
+    transition: 1s;
+    height: 460px;
+    max-height: 460px;
+    overflow: hidden;
+}
+
+.stamp,
+.sign {
+    position: relative;
+    bottom: -21px;
+}

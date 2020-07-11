@@ -1,4 +1,5 @@
 const News = require('../../db/models/news')
+const { validationResult } = require('express-validator')
 
 // const path = require('path')
 // const fs = require('fs')
@@ -44,4 +45,26 @@ const all = async (req, res) => {
   }
 }
 
-module.exports = { index, all }
+const create = async (req, res) => {
+  try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).json({
+        errors: errors.array()
+      })
+    }
+    let news = await News.create({
+      title: req.body.title,
+      text: req.body.text,
+      image: !req.body.image ? null : req.body.image
+    })
+    return res.status(200).json(news)
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({
+      msg: 'Internal server error'
+    })
+  }
+}
+
+module.exports = { index, all, create }

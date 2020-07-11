@@ -20,6 +20,19 @@ const routes = [
     component: () => import('../views/news/IndexAdmin.vue')
   },
   {
+    path: '/news/create',
+    name: 'NewsCreate',
+    beforeEnter: authGuard,
+    component: () => import('../views/news/Create.vue')
+  },
+  {
+    path: '/news/:id',
+    name: 'NewsEdit',
+    props: true,
+    beforeEnter: authGuard,
+    component: () => import('../views/news/Edit.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/auth/Login.vue')

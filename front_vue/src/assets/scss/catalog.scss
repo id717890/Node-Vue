@@ -1,0 +1,116 @@
+.catalog-grid .catalog-item {
+  position: relative;
+}
+
+.catalog-grid .catalog-item figure {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.catalog-grid .catalog-item figure figcaption{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 2em;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.catalog-grid .catalog-item figure figcaption::before {
+  -ms-transition: opacity 0.35s, -ms-transform 0.35s;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 75%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 75%);
+  content: '';
+  opacity: 0;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.catalog-grid .catalog-item figure h2 {
+  word-spacing: -0.15em;
+  font-weight: 300;
+  font-size: 24px;
+  opacity: 0;
+
+  position: absolute;
+  top: 50%;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  -ms-transition: -ms-transform 0.35s, color 0.35s;
+  -webkit-transition: -webkit-transform 0.35s, color 0.35s;
+  transition: transform 0.35s, color 0.35s;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.catalog-grid .catalog-item figure p {
+  letter-spacing: 1px;
+  font-size: 68.5%;
+  line-height: 15px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2em;
+  width: 100%;
+  opacity: 0;
+  -ms-transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+
+  -ms-transition: opacity 0.35s, -ms-transform 0.35s;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  box-sizing: border-box;
+}
+
+.catalog-grid .catalog-item:hover figure h2 {
+  -ms-transform: translateY(-150%);
+  -webkit-transform: translateY(-150%);
+  transform: translateY(-150%);
+  opacity: 1;
+}
+
+.catalog-grid .catalog-item:hover figcaption::before {
+  -ms-transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+  opacity: 1;
+}

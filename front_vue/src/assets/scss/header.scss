@@ -1,0 +1,107 @@
+.Главная____________________О_компании__________ {
+  font-size: 16px;
+  font-family: "PTSans";
+  color: rgb( 254, 254, 254 );
+  text-align: center;
+  position: absolute;
+  left: 465px;
+  top: 217px;
+  width: 992px;
+  height: 14px;
+  z-index: 20;
+}
+
+.menu {
+  background-color: rgb( 24, 42, 104, 0.8 );
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.menu .item {
+  cursor: pointer;
+  min-width: 125px ;
+  color: white;
+  // border-right: 1px solid rgb( 255, 255, 255, 0.2 );
+  border-left: 1px solid rgb( 255, 255, 255, 0.2 );
+  padding: 10px 10px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.menu .item:hover,
+.menu .item.active {
+  background-color: rgb( 24, 42, 104, 0.8 );
+}
+
+.cogs {
+  background-color: #fb8c00;
+}
+
+.cogs:hover,
+.cogs-active{
+  background-color: #ff9e29 !important
+}
+
+
+.menu .item:last-child {
+  border-right: 1px solid rgb( 255, 255, 255, 0.2 );
+}
+
+.pdf-catalog {
+  font-family: "PTSans";
+  text-transform: none;
+  font-size: 18px !important;
+  background-color: rgb( 245, 169, 60 )!important;
+}
+
+.btn-social {
+  min-width: 0px !important;
+  // height: 45px!important;
+  // width: 45px!important;
+  // padding: 0 !important;
+}
+
+.t2 {
+  font-size: 16px;
+  font-family: "PTSans";
+  color: rgb( 85, 85, 85 );
+}
+
+.phone {
+  font-size: 22px;
+  font-family: "PTSans";
+  color: rgb( 51, 51, 51 );
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.header {
+  background-color: rgb( 243, 243, 244 );
+}
+
+.logo {
+  width: 175px;
+}
+
+.footer {
+  background-color: rgba( 65, 65, 65, 1 ) !important;
+    // height: 221px;
+}
+
+.footer-link {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-family: "PTSans";
+  color: rgb( 205, 205, 205 ) !important;
+  text-decoration: underline;
+}
+
+.header-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}

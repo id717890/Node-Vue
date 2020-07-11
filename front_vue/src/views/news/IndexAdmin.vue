@@ -20,10 +20,16 @@
             :headers="headers"
             :items="tableItems"
             class="elevation-1"
+            :options="pagination"
+            :footer-props="footerProps"
             hide
           >
             <template v-slot:item.image="{ item }">
-              <v-img max-width="90" :src="img(item.image)"></v-img>
+              <v-img
+                v-if="item.image"
+                max-width="90"
+                :src="img(item.image)"
+              ></v-img>
             </template>
             <template v-slot:item.act="{ item }">
               <v-btn
@@ -32,7 +38,7 @@
                 small
                 title="Редакитровать"
                 color="primary"
-                :to="'/lk/news/' + item.id"
+                :to="'/news/' + item.id"
               >
                 <v-icon>mdi-pen</v-icon>
               </v-btn>
@@ -68,11 +74,18 @@ const settings = {
 }
 import imageMixin from '../../mixins/image'
 import { mapActions, mapState } from 'vuex'
+import config from '../../init/config'
 import ConfirmDialogModal from '../../components/Dialog/ConfirmDialog'
 export default {
   mixins: [imageMixin],
   data: () => ({
+    footerProps: {
+      itemsPerPageOptions: config.rowsPerPageTable
+    },
     removedItem: null,
+    pagination: {
+      itemsPerPage: -1
+    },
     headers: [
       { text: 'Заголовок', value: 'title' },
       { text: 'Изображение', value: 'image', sortable: false, width: '150' },

@@ -5,6 +5,8 @@ import Vuex from 'vuex'
 import auth from './auth'
 import config from './config'
 import news from './news'
+import loading from './loading'
+import image from './image'
 
 Vue.use(Vuex)
 
@@ -17,6 +19,8 @@ export default new Vuex.Store({
   modules: {
     auth,
     config,
-    news
+    news,
+    loading,
+    image
   }
 })

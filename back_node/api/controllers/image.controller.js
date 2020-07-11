@@ -1,28 +1,49 @@
 const path = require('path')
 const fs = require('fs')
 const multer = require('multer')
-const storage = multer.diskStorage({
+const { v4: uuid } = require('uuid')
+
+const storagePreload = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, './public/images/')
   },
   filename: (req, file, callback) => {
-    const f = req.body.test
-    console.log(f)
-    callback(null, file.originalname)
+    let ext
+    switch (file.mimetype) {
+      case 'image/jpeg':
+        ext = '.jpg'
+        break
+      case 'image/png':
+        ext = '.png'
+        break
+    }
+    if (!ext) callback(new Error('File type not found'))
+    const prefix = req.body.prefix
+    callback(null, prefix + '-' + uuid() + ext)
   }
 })
 const uploader = multer({
-  storage: storage,
+  storage: storagePreload,
   limits: {
     fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: (req, file, callback) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      callback(null, true)
+    } else {
+      callback(new Error('File type is not allowed'), false)
+    }
   }
-}).single('uploadImage')
+}).single('image')
 
 const uploadImage = async (req, res) => {
   try {
     uploader(req, res, (err) => {
-      if (err) return res.status(400).json({ msg: err.message})
-      return res.status(200).json('ok')
+      if (err) return res.status(400).json({ msg: err.message })
+      return res.status(200).json({
+        'filename': req.file.filename,
+        'path': req.file.path
+      })
     })
   } catch (err) {
     console.log(err)

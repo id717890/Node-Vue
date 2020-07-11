@@ -1,6 +1,7 @@
 import context from '../api/api'
 import * as types from './mutation-types'
 import router from '../router'
+import Vue from 'vue'
 
 const state = {
   allNews: []
@@ -21,9 +22,18 @@ const actions = {
       })
   },
   async createNews({ dispatch }, payload) {
-    await context.post('api/news', payload).then(() => {
-      dispatch('setLoading', false)
-      router.push('/lk/news')
+    await context.post('api/news', payload).then(x => {
+      if (x.status && x.status !== 200) {
+        if (x.data) {
+          if (x.data.errors) {
+            x.data.errors.forEach(error => Vue.noty.error(error.msg))
+          }
+          if (x.data.msg) Vue.noty.error(x.data.msg)
+        }
+      } else {
+        dispatch('setLoading', false)
+        router.push('/news')
+      }
     })
   },
   async deleteNews({ dispatch }, payload) {
