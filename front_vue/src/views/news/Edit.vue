@@ -40,9 +40,9 @@
           </div>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="form.text">
         <v-col lg="6" md="8" sm="12" cols="12">
-          <tteditor @editorChanged="textChanged($event)" :text="null" />
+          <tteditor @editorChanged="textChanged($event)" :text="form.text" />
         </v-col>
       </v-row>
       <v-row>
@@ -71,12 +71,13 @@
 <script>
 import loading from '../../mixins/loading'
 import image from '../../mixins/image'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 // import config from '../../init/config'
 import TtEditor from '../../components/TipTapEditor'
 
 export default {
   mixins: [loading, image],
+  props: ['id'],
   components: {
     tteditor: TtEditor
   },
@@ -89,13 +90,28 @@ export default {
       image: ''
     }
   }),
-  created() {},
-  mounted() {
+  async created() {
+    await this.getAllNews()
     this.setLoad(false)
   },
-  computed: {},
+  mounted() {},
+  computed: {
+    ...mapGetters(['getNewsById']),
+    news() {
+      return this.getNewsById(this.id)
+    }
+  },
+  watch: {
+    news(value) {
+      if (value) {
+        this.form.title = value.title
+        this.form.text = value.text
+        this.form.image = value.image
+      }
+    }
+  },
   methods: {
-    ...mapActions(['createNews', 'uploadImage']),
+    ...mapActions(['getAllNews', 'updateNews', 'uploadImage']),
     textChanged(event) {
       this.form.text = event
     },
@@ -117,7 +133,10 @@ export default {
     save() {
       this.setLoad(true)
       if (this.$refs.form.validate()) {
-        this.createNews(this.form)
+        this.updateNews({
+          id: this.id,
+          ...this.form
+        })
       } else this.setLoad(false)
     }
   }

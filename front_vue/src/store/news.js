@@ -12,9 +12,18 @@ const actions = {
   async updateNews({ dispatch }, payload) {
     await context
       .post('api/news/update/' + payload.id, payload)
-      .then(() => {
-        dispatch('setLoading', false)
-        router.push('/lk/news')
+      .then(x => {
+        if (x.status && x.status !== 200) {
+          if (x.data) {
+            if (x.data.errors) {
+              x.data.errors.forEach(error => Vue.noty.error(error.msg))
+            }
+            if (x.data.msg) Vue.noty.error(x.data.msg)
+          }
+        } else {
+          dispatch('setLoading', false)
+          router.push('/news')
+        }
       })
       .catch(x => {
         console.log(x)

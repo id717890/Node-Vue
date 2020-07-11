@@ -8,7 +8,10 @@ module.exports = {
   plugins: ['prettier'],
   parserOptions: {
     parser: 'babel-eslint',
-    ecmaVersion: 2017
+    ecmaVersion: 2017,
+    'ecmaFeatures': {
+      'experimentalObjectRestSpread': true
+    }
   },
   rules: {
     semi: ['error', 'never'],

@@ -7,6 +7,7 @@ import config from './config'
 import news from './news'
 import loading from './loading'
 import image from './image'
+import dialog from './dialog'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     config,
     news,
     loading,
-    image
+    image,
+    dialog
   }
 })

@@ -4,7 +4,7 @@ const secret =
   process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'secret'
 
 const authService = () => {
-  console.log(process.env.TOKEN_EXPIRATION)
+  // console.log(process.env.TOKEN_EXPIRATION)
   const issue = (payload) => jwt.sign(payload, secret, { expiresIn: process.env.TOKEN_EXPIRATION })
   const verify = (token, cb) => jwt.verify(token, secret, {}, cb)
 
