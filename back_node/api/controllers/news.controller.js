@@ -61,15 +61,19 @@ const update = async (req, res) => {
     const findItem = await News.findOne({
       where: { id }
     })
-    if (!findItem) return res.status(404).json({
-      msg: 'Model not found'
-    })
+    if (!findItem)
+      return res.status(404).json({
+        msg: 'Model not found'
+      })
     if (findItem.image) {
-      if (findItem.image !== req.body.image ) {
-        const file= path.join(__dirname, '../../public/images/'+findItem.image)
-        fs.stat(file, (err)=> {
+      if (findItem.image !== req.body.image) {
+        const file = path.join(
+          __dirname,
+          '../../public/images/' + findItem.image
+        )
+        fs.stat(file, (err) => {
           if (err) return
-          fs.unlink(file, ()=> {})
+          fs.unlink(file, () => {})
         })
       }
     }
@@ -92,14 +96,15 @@ const remove = async (req, res) => {
     const findItem = await News.findOne({
       where: { id }
     })
-    if (!findItem) return res.status(404).json({
-      msg: 'Model not found'
-    })
+    if (!findItem)
+      return res.status(404).json({
+        msg: 'Model not found'
+      })
     if (findItem.image) {
-      const file= path.join(__dirname, '../../public/images/'+findItem.image)
-      fs.stat(file, (err)=> {
+      const file = path.join(__dirname, '../../public/images/' + findItem.image)
+      fs.stat(file, (err) => {
         if (err) return
-        fs.unlink(file, ()=> {})
+        fs.unlink(file, () => {})
       })
     }
     await findItem.destroy()
