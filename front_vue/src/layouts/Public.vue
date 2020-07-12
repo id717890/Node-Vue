@@ -1,10 +1,7 @@
 <template>
-  <section>
-    <modals-container />
-    <transition name="router-fade" mode="out-in">
-      <router-view />
-    </transition>
-  </section>
+  <transition mode="out-in">
+    <router-view name="guest" />
+  </transition>
 </template>
 
 <script>

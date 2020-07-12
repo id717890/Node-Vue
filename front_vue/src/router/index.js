@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 import authGuard from '../plugins/auth-guard'
 import NProgress from 'nprogress'
 import store from '../store'
@@ -9,29 +9,53 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    beforeEnter: authGuard,
-    component: Home
+    // name: 'Home',
+    // beforeEnter: authGuard,
+    component: () => import('../layouts/Public.vue'),
+    children: [
+      {
+        path: '',
+        // redirect: '/constructor',
+        components: {
+          guest: () => import('../views/About.vue')
+        }
+      }
+    ]
+    // component: Home
   },
   {
-    path: '/news',
-    name: 'NewsAdmin',
+    path: '/lk',
+    name: 'LK',
+    redirect: '/lk/home',
     beforeEnter: authGuard,
-    component: () => import('../views/news/IndexAdmin.vue')
+    component: () => import('../layouts/Dashboard.vue'),
+    children: [
+      {
+        path: 'home',
+        beforeEnter: authGuard,
+        component: () => import('../views/Home.vue')
+      },
+      {
+        path: 'news',
+        beforeEnter: authGuard,
+        component: () => import('../views/news/IndexAdmin.vue')
+      },
+      {
+        path: 'news/create',
+        name: 'NewsCreate',
+        beforeEnter: authGuard,
+        component: () => import('../views/news/Create.vue')
+      },
+      {
+        path: 'news/:id',
+        name: 'NewsEdit',
+        props: true,
+        beforeEnter: authGuard,
+        component: () => import('../views/news/Edit.vue')
+      }
+    ]
   },
-  {
-    path: '/news/create',
-    name: 'NewsCreate',
-    beforeEnter: authGuard,
-    component: () => import('../views/news/Create.vue')
-  },
-  {
-    path: '/news/:id',
-    name: 'NewsEdit',
-    props: true,
-    beforeEnter: authGuard,
-    component: () => import('../views/news/Edit.vue')
-  },
+
   {
     path: '/login',
     name: 'Login',
