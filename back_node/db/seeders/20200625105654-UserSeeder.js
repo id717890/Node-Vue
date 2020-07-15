@@ -13,6 +13,38 @@ module.exports = {
         verified: true,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: 2,
+        email: 'ivan@gmail.com',
+        password: bcryptService().password({ password: 'qwe' }),
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 3,
+        email: 'max@gmail.com',
+        password: bcryptService().password({ password: 'qwe' }),
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 4,
+        email: 'lena@gmail.com',
+        password: bcryptService().password({ password: 'qwe' }),
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 5,
+        email: 'olga@gmail.com',
+        password: bcryptService().password({ password: 'qwe' }),
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ])
     /**
