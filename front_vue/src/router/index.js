@@ -21,6 +21,12 @@ const routes = [
         }
       },
       {
+        path: 'chat',
+        components: {
+          guest: () => import('../views/chat/IndexGuest.vue')
+        }
+      },
+      {
         path: 'news',
         components: {
           guest: () => import('../views/news/IndexGuest.vue')

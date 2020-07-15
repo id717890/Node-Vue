@@ -2,8 +2,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const http = require('http')
 const cors = require('cors')
-require('dotenv').config()
 
+require('dotenv').config()
 /**
  * server configuration
  */
@@ -19,12 +19,9 @@ const environment = process.env.NODE_ENV
  */
 const app = express()
 const server = http.Server(app)
-
 const DB = dbService(environment, config.migrate).start()
-
-// allow cross origin requests
-// configure to only allow requests from certain origins
 app.use(cors())
+require('./socket')(server)
 
 // parsing the request bodys
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -33,6 +30,7 @@ app.use(bodyParser.json())
 app.use('/api', require('../config/routes'))
 
 // const Sequelize = require('sequelize');
+
 
 server.listen(config.port, () => {
   if (

@@ -12,6 +12,7 @@ import Auth from './plugins/auth'
 import 'nprogress/nprogress.css'
 import './plugins/font-awesome'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueSocketIO from 'vue-socket.io'
 
 import '@fortawesome/fontawesome-free/css/all.css'
 import './assets/scss/_app.scss'
@@ -22,6 +23,17 @@ Vue.use(Auth)
 Vue.use(VueJsModal, { dynamic: true })
 Vue.config.productionTip = false
 Vue.component('fai', FontAwesomeIcon)
+Vue.use(
+  new VueSocketIO({
+    debug: false,
+    connection: 'http://localhost:3333',
+    vuex: {
+      store,
+      actionPrefix: 'SOCKET_',
+      mutationPrefix: 'SOCKET_'
+    }
+  })
+)
 
 new Vue({
   router,
