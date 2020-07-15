@@ -4,7 +4,7 @@
       <v-col cols="12" class="py-0 ">
         <h3>
           Новости
-          <v-btn fab small to="/news/create">
+          <v-btn fab small to="/lk/news/create">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </h3>
@@ -38,7 +38,7 @@
                 small
                 title="Редакитровать"
                 color="primary"
-                :to="'/news/' + item.id"
+                :to="'/lk/news/' + item.id"
               >
                 <v-icon>mdi-pen</v-icon>
               </v-btn>

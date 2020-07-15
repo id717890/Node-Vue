@@ -47,7 +47,7 @@
       </v-row>
       <v-row>
         <v-col lg="6" md="8" sm="12" cols="12" class="d-flex">
-          <v-btn color="secondary" large to="/news">
+          <v-btn color="secondary" large to="/lk/news">
             <v-icon class="mr-2">mdi-undo</v-icon>
             Назад
           </v-btn>

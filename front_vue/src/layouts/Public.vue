@@ -1,47 +1,79 @@
 <template>
-  <transition mode="out-in">
-    <router-view name="guest" />
-  </transition>
+  <v-app id="inspire">
+    <v-app-bar app clipped-right color="white" elevation="0">
+      <v-app-bar-nav-icon @click.stop="left = !left"></v-app-bar-nav-icon>
+      <v-toolbar-title>Node + Vue Application</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-navigation-drawer v-model="left" fixed temporary>
+      <v-list dense>
+        <v-list-item to="/lk">
+          <v-list-item-action>
+            <v-icon>mdi-solar-panel</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Dashboard</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/">
+          <v-list-item-action>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/news">
+          <v-list-item-action>
+            <v-icon>mdi-newspaper</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>News</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-main>
+      <transition name="router-fade" mode="out-in">
+        <router-view name="guest"></router-view>
+      </transition>
+    </v-main>
+
+    <v-navigation-drawer
+      v-model="right"
+      fixed
+      right
+      temporary
+    ></v-navigation-drawer>
+
+    <v-footer app color="white" class="white--text">
+      <span>Vuetify</span>
+      <v-spacer></v-spacer>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   props: {
     source: String
   },
-  computed: {
-    ...mapGetters(['getConfig', 'isAuth']),
-    cfgTheme() {
-      return this.getConfig('theme')
-    },
-    cfgColor() {
-      return this.getConfig('color')
-    },
-    cfgNavbar() {
-      return this.getConfig('navbar')
-    },
-    cfgFooter() {
-      return this.getConfig('footer')
-    }
-  },
+  data: () => ({
+    drawer: null,
+    drawerRight: null,
+    right: false,
+    left: false
+  }),
   async created() {
-    this.getAllConfigs()
-  },
-  watch: {
-    cfgTheme(value) {
-      if (value) this.$vuetify.theme.dark = this.cfgTheme === 'dark'
-    }
+    this.$vuetify.theme.dark = false
+    await this.getAllNewsAnonymous()
   },
   methods: {
-    ...mapActions(['getAllConfigs', 'logout']),
-    logoutApp() {
-      this.logout()
-      this.$router.push('/login')
-    }
-  },
-  data: () => ({
-    drawer: null
-  })
+    ...mapActions(['getAllNewsAnonymous'])
+  }
 }
 </script>

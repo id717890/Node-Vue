@@ -19,6 +19,22 @@ const routes = [
         components: {
           guest: () => import('../views/About.vue')
         }
+      },
+      {
+        path: 'news',
+        components: {
+          guest: () => import('../views/news/IndexGuest.vue')
+        }
+      },
+      {
+        path: 'news/:id',
+        name: 'SingleNews',
+        props: {
+          guest: true
+        },
+        components: {
+          guest: () => import('../views/news/Single.vue')
+        }
       }
     ]
     // component: Home

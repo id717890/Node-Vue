@@ -3,6 +3,14 @@
     <!-- <modals-container /> -->
     <v-navigation-drawer v-if="isAuth" v-model="drawer" app>
       <v-list dense>
+        <v-list-item link to="/">
+          <v-list-item-action>
+            <v-icon>mdi-web</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Web</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link to="/lk/home">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
@@ -16,7 +24,7 @@
             <v-icon>mdi-newspaper</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Новости</v-list-item-title>
+            <v-list-item-title>News</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link to="/login">
@@ -96,6 +104,9 @@ export default {
   },
   async created() {
     this.getAllConfigs()
+  },
+  mounted() {
+    this.$vuetify.theme.dark = this.cfgTheme === 'dark'
   },
   watch: {
     cfgTheme(value) {

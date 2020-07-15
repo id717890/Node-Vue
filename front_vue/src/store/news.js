@@ -22,7 +22,7 @@ const actions = {
           }
         } else {
           dispatch('setLoading', false)
-          router.push('/news')
+          router.push('/lk/news')
         }
       })
       .catch(x => {
@@ -41,7 +41,7 @@ const actions = {
         }
       } else {
         dispatch('setLoading', false)
-        router.push('/news')
+        router.push('/lk/news')
       }
     })
   },
@@ -52,6 +52,11 @@ const actions = {
   },
   async getAllNews({ commit }) {
     context.get('api/news').then(x => {
+      commit(types.GET_ALL_NEWS, x)
+    })
+  },
+  async getAllNewsAnonymous({ commit }) {
+    context.get('api/news/all').then(x => {
       commit(types.GET_ALL_NEWS, x)
     })
   }
