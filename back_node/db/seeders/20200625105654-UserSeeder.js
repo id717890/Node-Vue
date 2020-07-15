@@ -11,6 +11,7 @@ module.exports = {
         email: 'jusupovz@gmail.com',
         password: bcryptService().password({ password: '123' }),
         verified: true,
+        role: 'admin',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -19,6 +20,7 @@ module.exports = {
         email: 'ivan@gmail.com',
         password: bcryptService().password({ password: 'qwe' }),
         verified: true,
+        role: 'user',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -27,6 +29,7 @@ module.exports = {
         email: 'max@gmail.com',
         password: bcryptService().password({ password: 'qwe' }),
         verified: true,
+        role: 'user',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -35,6 +38,7 @@ module.exports = {
         email: 'lena@gmail.com',
         password: bcryptService().password({ password: 'qwe' }),
         verified: true,
+        role: 'user',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -43,6 +47,7 @@ module.exports = {
         email: 'olga@gmail.com',
         password: bcryptService().password({ password: 'qwe' }),
         verified: true,
+        role: 'user',
         createdAt: new Date(),
         updatedAt: new Date()
       }

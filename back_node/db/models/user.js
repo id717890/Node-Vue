@@ -27,6 +27,10 @@ const User = sequelize.define(
     verified: {
       type: Sequelize.BOOLEAN,
       defaultValue: false
+    },
+    role: {
+      type: Sequelize.STRING,
+      defaultValue: 'user'
     }
   },
   { hooks, tableName }

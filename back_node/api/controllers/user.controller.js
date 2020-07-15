@@ -188,7 +188,8 @@ const login = async (req, res) => {
 
       if (bcryptService().comparePassword(password, user.password)) {
         const token = authService().issue({
-          id: user.id
+          id: user.id,
+          role: user.role
         })
         const expiration = process.env.TOKEN_EXPIRATION
         return res.status(200).json({

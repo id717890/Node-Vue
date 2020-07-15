@@ -2,6 +2,7 @@ import * as types from './mutation-types'
 import context from '../api/api'
 import Vue from 'vue'
 import router from '../router'
+import jwt from 'jsonwebtoken'
 
 const state = {
   user: null
@@ -20,6 +21,15 @@ const getters = {
 
   //   return 123
   // },
+  decodeToken(state) {
+    if (!state.user || !state.user.token) return null
+    return jwt.decode(state.user.token)
+  },
+  isAdmin(state, getters) {
+    const decode = getters.decodeToken
+    if (!decode || !decode.role) return false
+    return decode.role.toLowerCase() === 'admin'
+  },
   getUser(state) {
     return state.user
   },
@@ -29,8 +39,13 @@ const getters = {
   getLoading(state) {
     return state.loading
   },
-  isAuth: state => state.user != null,
-  isAdmin: state => state.role !== null && state.role === 'admin'
+  getRole(state, getters) {
+    const decode = getters.decodeToken
+    if (!decode || !decode.role) return null
+    return decode.role
+  },
+  isAuth: state => state.user != null
+  // isAdmin: state => state.role !== null && state.role === 'admin'
 }
 
 // actions
