@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../../config/database')
-const Chat = require('./Chat')
+// const Chat = require('./Chat')
 const hooks = {}
 
 const tableName = 'ChatMessages'
@@ -36,6 +36,6 @@ const ChatMessage = sequelize.define(
   }
 )
 
-ChatMessage.belongsTo(Chat)
+
 
 module.exports = ChatMessage

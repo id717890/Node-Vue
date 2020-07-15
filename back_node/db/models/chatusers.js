@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../../config/database')
 const User = require('./User')
-const Chat = require('./Chat')
+// const Chat = require('./Chat')
 const hooks = {}
 
 const tableName = 'ChatUsers'
@@ -29,6 +29,6 @@ const ChatUser = sequelize.define(
 )
 
 ChatUser.belongsTo(User)
-ChatUser.belongsTo(Chat)
+// ChatUser.belongsTo(Chat, { alias: 'chat1' })
 
 module.exports = ChatUser
