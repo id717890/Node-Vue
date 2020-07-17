@@ -21,12 +21,6 @@ const routes = [
         }
       },
       {
-        path: 'chat',
-        components: {
-          guest: () => import('../views/chat/IndexGuest.vue')
-        }
-      },
-      {
         path: 'news',
         components: {
           guest: () => import('../views/news/IndexGuest.vue')
@@ -56,6 +50,10 @@ const routes = [
         path: 'home',
         beforeEnter: authGuard,
         component: () => import('../views/Home.vue')
+      },
+      {
+        path: 'chat',
+        component: () => import('../views/chat/Index.vue')
       },
       {
         path: 'news',

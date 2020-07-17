@@ -44,6 +44,11 @@ const getters = {
     if (!decode || !decode.role) return null
     return decode.role
   },
+  userId(state, getters) {
+    const decode = getters.decodeToken
+    if (!decode || !decode.id) return null
+    return decode.id
+  },
   isAuth: state => state.user != null
   // isAdmin: state => state.role !== null && state.role === 'admin'
 }

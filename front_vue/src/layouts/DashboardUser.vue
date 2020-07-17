@@ -27,12 +27,12 @@
             <v-list-item-title>News</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="/login">
+        <v-list-item link to="/lk/chat">
           <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
+            <v-icon>mdi-forum-outline</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Login</v-list-item-title>
+            <v-list-item-title>Chat</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link @click="logoutApp">

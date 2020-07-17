@@ -9,6 +9,7 @@ import loading from './loading'
 import image from './image'
 import dialog from './dialog'
 import socket from './socket'
+import chat from './chat'
 
 Vue.use(Vuex)
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     loading,
     image,
     dialog,
-    socket
+    socket,
+    chat
   }
 })

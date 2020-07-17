@@ -23,5 +23,6 @@ const Chat = sequelize.define(
 ChatUser.belongsTo(Chat)
 ChatMessage.belongsTo(Chat)
 Chat.hasMany(ChatMessage, {as: 'messages'})
+Chat.hasMany(ChatUser, {as: 'users'})
 
 module.exports = Chat

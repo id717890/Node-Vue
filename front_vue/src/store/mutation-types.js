@@ -21,6 +21,9 @@ export const GET_ALL_COLORS = 'GET_ALL_COLORS'
 /* CANAVAS */
 export const SHOW_DELETE_BTN = 'SHOW_DELETE_BTN'
 
+/* CHAT */
+export const GET_ALL_CHATS = 'GET_ALL_CHATS'
+
 /* CONFIGS */
 export const GET_ALL_CONFIGS = 'GET_ALL_CONFIGS'
 

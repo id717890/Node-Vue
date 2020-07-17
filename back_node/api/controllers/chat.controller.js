@@ -24,6 +24,17 @@ const index = async (req, res) => {
             {
               model: ChatMessage,
               as: 'messages'
+            },
+            {
+              model: ChatUser,
+              as: 'users',
+              attributes: ['id'],
+              include: [
+                {
+                  model: User,
+                  attributes: ['id', 'email']
+                }
+              ]
             }
           ]
         }
