@@ -1,8 +1,8 @@
 const Album = require('../../db/models/album')
+const AlbumImage = require('../../db/models/albumimage')
 const fs = require('fs')
 const path = require('path')
 const validationService = require('../services/validation.service')
-const AlbumImage = require('../../db/models/albumimage')
 
 const index = async (req, res) => {
   try {
@@ -19,7 +19,6 @@ const index = async (req, res) => {
 const create = async (req, res) => {
   try {
     validationService().checkValidation(req, res)
-    // return res.status(200).json(req.body)
     let newModel = await Album.create({
       name: req.body.name,
       description: !req.body.description ? null : req.body.description
