@@ -56,6 +56,22 @@ const routes = [
         component: () => import('../views/chat/Index.vue')
       },
       {
+        path: 'album/create',
+        beforeEnter: authGuard,
+        component: () => import('../views/album/Create.vue')
+      },
+      {
+        path: 'album/:id',
+        props: true,
+        beforeEnter: authGuard,
+        component: () => import('../views/album/Edit.vue')
+      },
+      {
+        path: 'albums',
+        beforeEnter: authGuard,
+        component: () => import('../views/album/IndexAdmin.vue')
+      },
+      {
         path: 'news',
         beforeEnter: authGuard,
         component: () => import('../views/news/IndexAdmin.vue')

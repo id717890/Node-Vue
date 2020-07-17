@@ -27,6 +27,14 @@
             <v-list-item-title>News</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/lk/albums">
+          <v-list-item-action>
+            <v-icon>mdi-folder-multiple-image</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Albums of images</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link to="/lk/chat">
           <v-list-item-action>
             <v-icon>mdi-forum-outline</v-icon>

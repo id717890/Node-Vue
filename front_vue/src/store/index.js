@@ -10,6 +10,7 @@ import image from './image'
 import dialog from './dialog'
 import socket from './socket'
 import chat from './chat'
+import album from './album'
 
 Vue.use(Vuex)
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     image,
     dialog,
     socket,
-    chat
+    chat,
+    album
   }
 })
