@@ -3,7 +3,7 @@ module.exports = (server) => {
   io.on('connection', (socket) => {
     console.log('a user connected')
     socket.emit('NEW_MESSAGE', {
-      message: 'test'
+      message: 'TEST SOCKET.IO SERVER'
     })
   })
 }

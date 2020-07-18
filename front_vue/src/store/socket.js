@@ -8,7 +8,7 @@ const getters = {}
 // actions
 const actions = {
   SOCKET_NEW_MESSAGE(context, data) {
-    console.log(context)
+    // console.log(context)
     console.log('MESSAGE RECIEVED', data)
   }
 }

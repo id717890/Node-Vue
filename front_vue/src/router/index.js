@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
-import authGuard from '../plugins/auth-guard'
+import authGuard from './auth-guard'
+import adminGuard from './admin-guard'
 import NProgress from 'nprogress'
 import store from '../store'
+import multiguard from 'vue-router-multiguard'
 Vue.use(VueRouter)
 
 const routes = [
@@ -57,36 +59,36 @@ const routes = [
       },
       {
         path: 'album/create',
-        beforeEnter: authGuard,
+        beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/album/Create.vue')
       },
       {
         path: 'album/:id',
         props: true,
-        beforeEnter: authGuard,
+        beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/album/Edit.vue')
       },
       {
         path: 'albums',
-        beforeEnter: authGuard,
+        beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/album/IndexAdmin.vue')
       },
       {
         path: 'news',
-        beforeEnter: authGuard,
+        beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/news/IndexAdmin.vue')
       },
       {
         path: 'news/create',
         name: 'NewsCreate',
-        beforeEnter: authGuard,
+        beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/news/Create.vue')
       },
       {
         path: 'news/:id',
         name: 'NewsEdit',
         props: true,
-        beforeEnter: authGuard,
+        beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/news/Edit.vue')
       }
     ]

@@ -1,5 +1,17 @@
+import jwt from 'jsonwebtoken'
+
 export default function(Vue) {
   Vue.auth = {
+    decodeToken() {
+      const user = this.getCredentials()
+      if (!user || !user.token) return null
+      return jwt.decode(user.token)
+    },
+    isAdmin() {
+      const decode = this.decodeToken()
+      if (!decode || !decode.role) return false
+      return decode.role.toLowerCase() === 'admin'
+    },
     getToken() {
       if (this.isExpired()) {
         this.logout()
