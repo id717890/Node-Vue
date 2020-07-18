@@ -44,11 +44,19 @@
             text
             small
             class="ml-3"
-            @click.prevent=""
+            @click="$refs.file.click()"
             v-if="currentAlbum && currentAlbum.value !== -1"
           >
             <v-icon>mdi-cloud-upload</v-icon>
           </v-btn>
+          <input
+            style="display: none"
+            ref="file"
+            type="file"
+            accept="image/jpeg"
+            multiple
+            @change="uploadImages"
+          />
         </h3>
         <v-spacer></v-spacer>
         <v-select
@@ -74,6 +82,14 @@
             :src="img(item.image)"
             class="align-end white--text image-text"
           >
+            <template v-slot:placeholder>
+              <v-row class="fill-height ma-0" align="center" justify="center">
+                <v-progress-circular
+                  indeterminate
+                  color="grey lighten-5"
+                ></v-progress-circular>
+              </v-row>
+            </template>
             <div>
               <v-btn fab text title="Просмотр" @click="openImageSlider(item)">
                 <v-icon>mdi-magnify-plus-outline</v-icon>
@@ -124,13 +140,12 @@
             <template v-slot:item.act="{ item }">
               <v-btn
                 fab
-                text
                 small
-                title="Редакитровать"
-                color="primary"
-                :to="'/lk/album/' + item.id"
+                text
+                title="Просмотр"
+                @click="openImageSlider(item)"
               >
-                <v-icon>mdi-pen</v-icon>
+                <v-icon>mdi-magnify-plus-outline</v-icon>
               </v-btn>
               <v-btn
                 fab
@@ -188,9 +203,28 @@ export default {
     ...mapActions([
       'getAllAlbums',
       'resetConfirmDialogResult',
-      'deleteAlbum',
-      'setLoading'
+      'deleteImageFromAlbum',
+      'setLoading',
+      'uploadImageToAlbumMultiple',
+      'addUpploadedImagesToAlbum'
     ]),
+    uploadImages(event) {
+      let fd = new FormData()
+      fd.append('prefix', 'album-image')
+      fd.append('album', this.currentAlbum.id)
+      event.target.files.forEach(file => {
+        fd.append('images[]', file)
+      })
+      this.uploadImageToAlbumMultiple(fd)
+        .then(x => {
+          if (x.data && x.data.msg) {
+            this.$noty.error(x.data.msg)
+          } else {
+            this.addUpploadedImagesToAlbum(x)
+          }
+        })
+        .catch(x => console.log(x))
+    },
     openImageSlider(image) {
       let images = []
       let buf = [...this.images]
@@ -204,7 +238,8 @@ export default {
         { images: images },
         {
           ...config.modalSettings,
-          // maxWidth: 800,
+          width: '70%',
+          scrollable: true,
           clickToClose: true
         }
       )
@@ -227,7 +262,7 @@ export default {
     confirmDelete() {
       if (this.confirmDialogResult === true) {
         this.resetConfirmDialogResult()
-        this.deleteAlbum(this.removedItem)
+        this.deleteImageFromAlbum(this.removedItem)
         this.removedItem = null
       }
     }

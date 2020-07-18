@@ -16,6 +16,13 @@ const getters = {
 
 // actions
 const actions = {
+  addUpploadedImagesToAlbum({ commit }, payload) {
+    commit(types.ADD_UPLOADED_IMAGE_TO_ALBUM, payload)
+  },
+  //eslint-disable-next-line
+  async uploadImageToAlbumMultiple({}, payload) {
+    return await context.post('api/album/uploadMultiple', payload)
+  },
   async getAllAlbums({ commit, dispatch }) {
     context
       .get('api/album')
@@ -67,13 +74,41 @@ const actions = {
     context.post('api/album/delete/' + payload.id).then(() => {
       dispatch('getAllAlbums')
     })
+  },
+  async deleteImageFromAlbum({ commit }, payload) {
+    context.post('api/album/image/delete/' + payload.id).then(x => {
+      commit(types.REMOVE_IMAGE_FROM_ALBUM, x)
+    })
   }
 }
 
 // mutations
 const mutations = {
+  [types.REMOVE_IMAGE_FROM_ALBUM](state, payload) {
+    if (payload && payload.albumId && payload.id) {
+      const albumId = payload.albumId
+      const imageId = payload.id
+      let findAlbum = state.allAlbums.find(
+        x => Number(x.id) === Number(albumId)
+      )
+      if (findAlbum) {
+        let findImage = findAlbum.images.find(
+          x => Number(x.id) === Number(imageId)
+        )
+        if (findImage) {
+          findAlbum.images.splice(findAlbum.images.indexOf(findImage), 1)
+        }
+      }
+    }
+  },
   [types.GET_ALL_ALBUMS](state, payload) {
     state.allAlbums = payload
+  },
+  [types.ADD_UPLOADED_IMAGE_TO_ALBUM](state, { album, images }) {
+    let findAlbum = state.allAlbums.find(x => Number(x.id) === Number(album))
+    if (findAlbum) {
+      findAlbum.images = [...findAlbum.images, ...images]
+    }
   }
 }
 
