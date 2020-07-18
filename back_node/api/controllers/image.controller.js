@@ -41,8 +41,8 @@ const uploadImage = async (req, res) => {
     uploader(req, res, (err) => {
       if (err) return res.status(400).json({ msg: err.message })
       return res.status(200).json({
-        'filename': req.file.filename,
-        'path': req.file.path
+        filename: req.file.filename,
+        path: req.file.path
       })
     })
   } catch (err) {
@@ -62,7 +62,7 @@ const displayImage = async (req, res) => {
     const image = req.params.filename
     const dir = path.normalize(path.join(__dirname, '../../public/images/'))
     const file = dir + image
-    console.log(file)
+    // console.log(file)
     fs.stat(file, (error) => {
       if (error) {
         console.log(error)

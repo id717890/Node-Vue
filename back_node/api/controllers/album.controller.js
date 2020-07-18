@@ -6,7 +6,11 @@ const validationService = require('../services/validation.service')
 
 const index = async (req, res) => {
   try {
-    const items = await Album.findAll()
+    const items = await Album.findAll({
+      include: [
+        { model: AlbumImage, as: 'images' }
+      ]
+    })
     return res.status(200).json(items)
   } catch (err) {
     console.log(err)

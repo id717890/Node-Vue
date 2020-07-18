@@ -16,8 +16,16 @@ const getters = {
 
 // actions
 const actions = {
-  async getAllAlbums({ commit }) {
-    context.get('api/album').then(x => commit(types.GET_ALL_ALBUMS, x))
+  async getAllAlbums({ commit, dispatch }) {
+    context
+      .get('api/album')
+      .then(x => {
+        commit(types.GET_ALL_ALBUMS, x)
+        dispatch('setLoading', false)
+      })
+      .catch(() => {
+        dispatch('setLoading', false)
+      })
   },
   async createAlbum({ dispatch }, payload) {
     await context.post('api/album', payload).then(x => {

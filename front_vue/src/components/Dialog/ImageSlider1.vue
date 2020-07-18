@@ -1,7 +1,7 @@
 <template>
   <v-card class="pa-12">
     <v-card-text>
-      <v-carousel class="photos-carousel" height="400" hide-delimiters>
+      <v-carousel class="photos-carousel" height="auto" hide-delimiters>
         <v-carousel-item v-for="(item, index) in images" :key="index">
           <v-img :src="img(item.image)"></v-img>
         </v-carousel-item>

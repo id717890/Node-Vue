@@ -58,6 +58,11 @@ const routes = [
         component: () => import('../views/chat/Index.vue')
       },
       {
+        path: 'albums-images',
+        beforeEnter: multiguard([authGuard, adminGuard]),
+        component: () => import('../views/albumImage/IndexAdmin.vue')
+      },
+      {
         path: 'album/create',
         beforeEnter: multiguard([authGuard, adminGuard]),
         component: () => import('../views/album/Create.vue')

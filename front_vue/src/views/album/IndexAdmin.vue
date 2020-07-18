@@ -7,6 +7,15 @@
           <v-btn fab small to="/lk/album/create">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
+          <v-btn
+            class="ml-3"
+            fab
+            small
+            to="/lk/albums-images"
+            title="Каталог изображений"
+          >
+            <v-icon>mdi-image</v-icon>
+          </v-btn>
         </h3>
       </v-col>
 
@@ -79,7 +88,12 @@ export default {
     ]
   }),
   methods: {
-    ...mapActions(['getAllAlbums', 'resetConfirmDialogResult', 'deleteAlbum']),
+    ...mapActions([
+      'getAllAlbums',
+      'resetConfirmDialogResult',
+      'deleteAlbum',
+      'setLoading'
+    ]),
     deleteItem(item) {
       this.removedItem = item
       this.$modal.show(
@@ -101,14 +115,14 @@ export default {
   },
   computed: {
     ...mapState({
+      loading: state => state.loading.loading,
       tableItems: state => state.album.allAlbums,
       confirmDialogResult: state => state.dialog.confirmDialogResult
     })
   },
   async created() {
-    this.loading = true
+    this.setLoading(true)
     await this.getAllAlbums()
-    this.loading = false
   }
 }
 </script>

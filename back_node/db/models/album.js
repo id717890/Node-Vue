@@ -32,4 +32,5 @@ const Album = sequelize.define(
 
 Album.hasMany(AlbumImage, { foreignKey: 'albumId', as: 'images' })
 
+
 module.exports = Album
