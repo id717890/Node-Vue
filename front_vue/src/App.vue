@@ -8,7 +8,6 @@
 </template>
 
 <script>
-// import { mapActions, mapGetters } from 'vuex'
 export default {
   sockets: {},
   props: {
@@ -29,21 +28,9 @@ export default {
     //   return this.getConfig('footer')
     // }
   },
-  async created() {
-    // this.getAllConfigs()
-  },
-  watch: {
-    // cfgTheme(value) {
-    //   if (value) this.$vuetify.theme.dark = this.cfgTheme === 'dark'
-    // }
-  },
-  methods: {
-    // ...mapActions(['getAllConfigs', 'logout']),
-    // logoutApp() {
-    //   this.logout()
-    //   this.$router.push('/login')
-    // }
-  },
+  async created() {},
+  watch: {},
+  methods: {},
   data: () => ({
     drawer: null
   })
