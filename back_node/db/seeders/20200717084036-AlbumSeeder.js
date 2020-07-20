@@ -17,7 +17,7 @@ module.exports = {
         description: 'Test album ###2',
         createdAt: new Date(),
         updatedAt: new Date()
-      }      
+      }
     ]
     await queryInterface.bulkInsert('Albums', albums)
     const albumImages = [
